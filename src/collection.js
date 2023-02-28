@@ -81,6 +81,7 @@ export default [
                   status
                   createdAtBlockNumber
                   subgraphDeployment {
+                    ipfsHash
                     versions(first: 1000, where: {entityVersion: 2}) {
                       id
                       subgraph(where: {status: Active}) {
@@ -113,7 +114,7 @@ export default [
             if (lastBlock) {
                 for (const allocation of response.data.data.allocations) {
                     const subgraphName = allocation.subgraphDeployment.versions[0].subgraph.displayName;
-                    const allocationId = allocation.id;
+                    const allocationId = allocation.subgraphDeployment.ipfsHash;
                     const ageInBlocks = lastBlock - Number(allocation.createdAtBlockNumber);
                     prometheus[2].labels(allocationId, subgraphName).set(ageInBlocks);
                 }

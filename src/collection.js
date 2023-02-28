@@ -73,7 +73,7 @@ export default [
     },
     {
         type: ['Gauge', 'Gauge', 'Gauge'],
-        name: ['graph_active_subs', 'graph_deprecated_subs', 'graph_alloc_age'],
+        name: ['graph_active_subs', 'graph_deprecated_subs', 'graph_alloc_ages'],
         help: ['Active subgraphs count', 'Deprecated subgraphs count', 'Allocations block age'],
         url: process.env.NETWORK_SUBGRAPH,
         query: `fragment IndexerAllocationFragment on Allocation {

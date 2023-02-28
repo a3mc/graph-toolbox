@@ -34,7 +34,7 @@ for (const request of requests) {
 let isFetching = false;
 let cachedMetrics = null;
 
-app.get('/metrics', async (req, res) => {
+app.get(process.env.PATH, async (req, res) => {
     if (isFetching) {
         res.set('Content-Type', Prometheus.register.contentType);
         res.end(cachedMetrics);

@@ -72,6 +72,6 @@ async function fetchRequests() {
 }
 
 // Prometheus.collectDefaultMetrics();
-app.listen(port, async () => {
+app.listen(port || 3835, '0.0.0.0', async () => {
     console.log(`Graph-check prom exporter is listening at port ${port}`);
 });

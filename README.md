@@ -28,7 +28,7 @@ Then, run the following commands:
 1. `npm install`
 2. `cp .env.example .env`
 3. Edit `.env` file and set the variables
-4. Copy the config files from `example-configs` to `configs` directory: `cp example-configs/*.js configs/`
+4. Create a firectory `configs` in the root folder of the project: `mkdir configs`. Copy the config files from `example-configs` to `configs` directory: `cp example-configs/*.js configs/`
 5. Run the script: `npm start`
 
 You may want to add the process to systemd or use some other process manager, like PM2.

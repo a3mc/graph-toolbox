@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "test": "mocha tests/*.js --exit"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,12 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "prom-client": "^14.1.1"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
   }
 }

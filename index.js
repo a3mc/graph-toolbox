@@ -3,7 +3,7 @@ import Prometheus from 'prom-client';
 import axios from 'axios';
 import * as dotenv from 'dotenv';
 import * as configs from './config-index.js';
-import async from "async";
+import async from 'async';
 
 dotenv.config();
 const app = express();
@@ -59,7 +59,7 @@ app.get('/metrics', async (req, res) => {
     }
 });
 
-async function fetchRequests() {
+export async function fetchRequests() {
     const queue = [];
     for (const request of requests) {
         queue.push( async() => {
@@ -85,3 +85,5 @@ async function fetchRequests() {
 app.listen(port, '0.0.0.0', async () => {
     console.log(`Graph-check prom exporter is listening at port ${port}`);
 });
+
+export default app;

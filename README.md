@@ -53,6 +53,10 @@ This directory contains example configuration files for the various use cases.
 They can be used as a starting point to create your own configuration files.
 Please check the `README.md` file in the `example-configs` directory for more information.
 
+## Tests
+
+To run the tests, run the following command: `npm test`.
+
 ## Contributing
 
 Contributions are welcome! If you have any ideas or suggestions, please open an issue or a pull request.

@@ -13,6 +13,6 @@ RUN npm install
 
 COPY --chown=node . .
 
-EXPOSE 3583
+EXPOSE 9090
 
-CMD [ "node", "./src/index.js" ]
+CMD [ "node", "." ]

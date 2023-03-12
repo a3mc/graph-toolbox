@@ -2,13 +2,14 @@
 // It will increment the counter if the web endpoint is down.
 export default {
     type: ['Counter'],
-    name: ['indexer_url_downtime_counter'],
+    name: ['downtime_counter'],
     help: ['Downtime counter of indexer URL'],
     url: process.env.INDEXER_URL,
     method: 'get',
     callback: (response, prometheus) => {
         if ( response.status !== 200 ) {
-            prometheus['indexer_url_downtime_counter'].inc();
+            prometheus['downtime_counter'].reset();
+            prometheus['downtime_counter'].inc();
         }
     }
 }

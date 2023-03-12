@@ -10,7 +10,7 @@ const app = express();
 const port = Number(process.env.PORT || 9090);
 
 const errorsCounter = new Prometheus.Counter({
-    name: 'graph_check_errors',
+    name: (process.env.PROMETHEUS_PREFIX || '') + 'check_errors',
     help: 'Graph check errors',
 });
 
@@ -23,11 +23,14 @@ for (const [i, request] of requests.entries()) {
     const prometheusObject = {};
 
     request.prometheus = request.type.map((type, j) => {
-        const prometheus = new Prometheus[type]({
-            name: request.name[j],
+        const options = {
+            name: (process.env.PROMETHEUS_PREFIX || '') + request.name[j],
             help: request.help[j],
-            labelNames: ['id', 'name'],
-        });
+        }
+        if (type === 'Gauge') {
+            options.labelNames = ['id', 'name'];
+        }
+        const prometheus = new Prometheus[type](options);
         prometheusObject[request.name[j]] = prometheus;
         return prometheus;
     });
@@ -62,7 +65,7 @@ app.get('/metrics', async (req, res) => {
 export async function fetchRequests() {
     const queue = [];
     for (const request of requests) {
-        queue.push( async() => {
+        queue.push(async () => {
             try {
                 const response = await axios[request.method || 'post'](
                     request.url,

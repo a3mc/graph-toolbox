@@ -9,7 +9,7 @@ const configs = [];
 const loadConfigs = async () => {
     const files = await fs.readdir(configsDir);
     for (const file of files) {
-        if (file === 'index.js') {
+        if (file === 'README.md') {
             continue;
         }
         const filePath = path.join(configsDir, file);

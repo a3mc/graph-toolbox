@@ -1,7 +1,7 @@
 // This is a more complex example that uses filtering in the callback function and uses a global.state variable.
 export default {
     type: ['Gauge', 'Gauge', 'Gauge'],
-    name: ['graph_active_subs', 'graph_deprecated_subs', 'graph_alloc_ages'],
+    name: ['active_subs', 'deprecated_subs', 'alloc_ages'],
     help: ['Active subgraphs count', 'Deprecated subgraphs count', 'Allocations block age'],
     url: process.env.NETWORK_SUBGRAPH,
     query: `fragment IndexerAllocationFragment on Allocation {
@@ -32,10 +32,10 @@ export default {
                 }`,
     callback: (response, prometheus) => {
         // Active subgraphs count
-        prometheus['graph_active_subs'].set(Number(response.data.data.allocations.length));
+        prometheus['active_subs'].set(Number(response.data.data.allocations.length));
 
         // Filter out allocations that are not the current version of the subgraph.
-        prometheus['graph_deprecated_subs'].set(response.data.data.allocations.filter(
+        prometheus['deprecated_subs'].set(response.data.data.allocations.filter(
             allocation => {
                 return allocation.subgraphDeployment.versions[0].id !==
                     allocation.subgraphDeployment.versions[0].subgraph.currentVersion.id;
@@ -48,7 +48,7 @@ export default {
                 const subgraphName = allocation.subgraphDeployment.versions[0].subgraph.displayName;
                 const allocationId = allocation.subgraphDeployment.ipfsHash;
                 const ageInBlocks = global.state.lastBlock - Number(allocation.createdAtBlockNumber);
-                prometheus['graph_alloc_ages'].labels(allocationId, subgraphName).set(ageInBlocks);
+                prometheus['alloc_ages'].labels(allocationId, subgraphName).set(ageInBlocks);
             }
         }
     }

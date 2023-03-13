@@ -65,6 +65,7 @@ Contributions are welcome! If you have any ideas or suggestions, please open an 
 
 MIT
 
-### How it looks
+## How it may look in Grafana
+#### (based on the example configs)
 
 ![Grafana](grafana.png)

@@ -1,4 +1,4 @@
-# Proxy Server with Failover Capability
+# RPC Proxy Server with Failover Capability
 We've developed this tool to help the Graph Protocol community achieve a better sustainability of the RPC nodes connections. It is a Node.js proxy server that is capable of switching between primary and fail-over RPC nodes. It is designed to ensure that requests are still handled even if the primary node goes down, and to automatically switch back to the primary node when it becomes available again.
 
 ### Installation

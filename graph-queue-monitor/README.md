@@ -1,10 +1,10 @@
 # Graph Queue and Indexer Status Monitor
 
-As a new The Graph community member we've been using this tool to debug and study our indexer properties and agent queue. More features can be added, please ping us on Discord server. We are professional developers who enjoy modern high complexity space, specialized on protocols research, data crawling, user interfaces, automation and monitoring.
+This tool was developed to help TheGraph Indexers to get a better control over their Indexer Status and Actions Queue. 
 
 ### Live Demo
 
-You can find a working demo of the tool here: https://demo31.art3mis.net Please bear in mind it just to demonstrate the UI and doesn't load any real data. You have to install your own instance.
+You can find a working demo of the tool here: https://demo31.art3mis.net Please bear in mind that the demo site is just to demonstrate the UI and doesn't load any realtime data. You have to install your own instance.
 
 ### How it works
 

@@ -29,3 +29,5 @@ We welcome contributions from everyone. If you have any ideas or suggestions, pl
 All tools are licensed under the MIT license.
 
 *Developed with love and care by [ART3MIS.CLOUD](https://art3mis.cloud) for TheGraph Indexers, Subgraph Developers and data consumers.*
+
+![image](toolbox.png)

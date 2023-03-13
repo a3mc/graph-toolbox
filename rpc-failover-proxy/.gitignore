@@ -1,0 +1,6 @@
+/node_modules/
+/.env
+/.idea
+/logs/error.log
+/logs/warning.log
+/logs/combined.log

@@ -9,6 +9,10 @@ We've developed this tool to help the Graph Protocol community achieve a better 
 
 3. Start the server: `node .`
 
+### Tests
+
+To run the tests, run `npm test`.
+
 ### Configuration
 The following environment variables are required for the server to function properly:
 ```

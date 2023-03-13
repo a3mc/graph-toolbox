@@ -65,3 +65,6 @@ Contributions are welcome! If you have any ideas or suggestions, please open an 
 
 MIT
 
+### How it looks
+
+![Grafana](grafana.png)

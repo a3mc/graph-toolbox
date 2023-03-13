@@ -4,7 +4,7 @@ We found that as Indexers, we need more control and monitoring, than existing to
 
 ### This a Monorepo consisting of the following tools:
 
-### [Graph Queue and Indexer Status Monitor](graph-queue-status)
+### [Graph Queue and Indexer Status Monitor](graph-queue-monitor)
 
 This tool allows you to monitor the Status of your Indexer and the Actions queue. It will be useful for Indexers to keep an eye on how their allocations work. It has an interface available in browser.
 

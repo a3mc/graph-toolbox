@@ -32,4 +32,4 @@ The frontend part is a simple Angular app that displays the overview and queue i
 
 ### How it looks
 
-![Queue](/queue.jpg)
+![Queue](queue.jpg)

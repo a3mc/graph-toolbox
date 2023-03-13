@@ -2,6 +2,10 @@
 
 As a new The Graph community member we've been using this tool to debug and study our indexer properties and agent queue. More features can be added, please ping us on Discord server. We are professional developers who enjoy modern high complexity space, specialized on protocols research, data crawling, user interfaces, automation and monitoring.
 
+### Live Demo
+
+You can find a working demo of the tool here: https://demo31.art3mis.net Please bear in mind it just to demonstrate the UI and doesn't load any real data. You have to install your own instance.
+
 ### How it works
 
 The tool is a simple Node.js server (coupled with a frontend) that connects to aAgent DB and Graph Node DB and displays some overview of the Indexer status and Actions queue in a browser. It can be run locally or deployed to a server. We strongly recommend not to expose it publicly. Even though it only makes read-only "SELECT" queries, publicly exposing such tools goes against best practices.

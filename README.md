@@ -24,8 +24,8 @@ This tool allows you to create a failover proxy for your RPC nodes. It will be u
 
 We welcome contributions from everyone. If you have any ideas or suggestions, please open an issue or a pull request.
 
-#License
+# License
 
 All tools are licensed under the MIT license.
 
-Developed with love and care by [ART3MIS.CLOUD](https://art3mis.cloud) for TheGraph Indexers, Subgraph Developers and data consumers.
+*Developed with love and care by [ART3MIS.CLOUD](https://art3mis.cloud) for TheGraph Indexers, Subgraph Developers and data consumers.*

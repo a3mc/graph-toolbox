@@ -1,4 +1,4 @@
-# graph-queue-monitor
+# Graph Queue and Indexer Status Monitor
 
 As a new The Graph community member we've been using this tool to debug and study our indexer properties and agent queue. More features can be added, please ping us on Discord server. We are professional developers who enjoy modern high complexity space, specialized on protocols research, data crawling, user interfaces, automation and monitoring.
 

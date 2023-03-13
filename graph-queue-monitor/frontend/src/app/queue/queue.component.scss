@@ -1,0 +1,18 @@
+.success {
+	color: #3fb33f;
+}
+.failed {
+	color: red;
+}
+
+#limit, #refreshRate {
+	max-width: 70px;
+	display: inline-block;
+	background: #333;
+	color: #fff;
+	border: 1px solid #666;
+}
+
+.fa-spinner {
+	opacity: 0.6;
+}

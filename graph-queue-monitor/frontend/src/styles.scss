@@ -1,0 +1,49 @@
+html, body {
+	background: #000;
+	color: #fff;
+	padding: 20px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.monospace {
+	font-family: monospace;
+	font-size: 100%
+}
+
+.fa-copy {
+	cursor: pointer;
+	opacity: 0.5;
+	&:hover {
+		opacity: 1;
+	}
+	&:active {
+		opacity: 0.5;
+	}
+}
+
+.nav-link, a, a:visited {
+	color: #6b98d9;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	color: #6b98d9;
+	border-color: #6b98d9;
+	background-color: #6b98d9;
+	color: #000;
+}
+
+.nav-tabs .nav-link:hover {
+	color: #263859;
+	border-color: #6b98d9;
+	transition: all 0.2s ease-in-out;
+}
+
+ul.nav-tabs {
+	border-bottom: 1px solid #6b98d9;
+}

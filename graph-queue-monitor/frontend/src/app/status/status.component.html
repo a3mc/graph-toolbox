@@ -1,0 +1,182 @@
+<div class="clearfix">
+    <div style="float:left">
+        <small *ngIf="loading">
+            <i class="fas fa-spinner fa-spin ms-1 text-small"></i>
+        </small>
+    </div>
+
+    <div style="float:right">
+        <label class="form-label ms-4 me-2" for="refreshRate">Refresh rate :</label>
+        <input id="refreshRate" class="form-control" size="4" min="1" type="number" [(ngModel)]="refreshTime"
+               (change)="setRefresh()"/>
+        (s)
+    </div>
+</div>
+
+<h4 class="mt-3"><i class="fa fa-cube me-2 semi mb-2"></i> Deployments</h4>
+<table class="table table-dark mt-2">
+    <thead>
+    <tr>
+        <th>id <i class="fa fa-arrow-down"></i></th>
+        <th>deployment</th>
+        <th>synced</th>
+        <th>failed</th>
+        <th>health</th>
+        <th>entity count</th>
+        <th>earliest block</th>
+        <th>latest block</th>
+        <th>reorg count</th>
+        <th>reorg depth</th>
+        <th>max&nbsp;reorg depth</th>
+        <th>firehorse cursor</th>
+        <th>fatal error</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let deployment of status?.deployments">
+        <td>{{ deployment.id }}</td>
+        <td class="nowrap monospace">
+            <span title="{{ deployment.deployment }}" *ngIf="deployment.deployment">
+                {{ deployment.deployment.substr(0, 7) }}&hellip;{{ deployment.deployment.substr(-7, 7)}}
+                <i class="fa fa-copy" [cdkCopyToClipboard]="deployment.deployment"></i>
+            </span>
+        </td>
+        <td class="text-success" [class.text-danger]="!deployment.synced">{{ deployment.synced }}</td>
+        <td class="text-success" [class.text-danger]="deployment.failed">{{ deployment.failed }}</td>
+        <td class="text-success" [class.text-danger]="deployment.health !== 'healthy'">{{ deployment.health }}</td>
+        <td>{{ deployment.entity_count }}</td>
+        <td>{{ deployment.earliest_block_number }}</td>
+        <td>{{ deployment.latest_ethereum_block_number }}</td>
+        <td>{{ deployment.reorg_count }}</td>
+        <td>{{ deployment.current_reorg_depth }}</td>
+        <td>{{ deployment.max_reorg_depth }}</td>
+        <td>{{ deployment.firehorse_cursor }}</td>
+        <td>{{ deployment.fatal_error }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<h4 class="mt-5"><i class="fa fa-flag me-2 semi mb-2"></i> Indexer rules</h4>
+<table class="table table-dark mt-2">
+    <thead>
+    <tr>
+        <th>id <i class="fa fa-arrow-down"></i></th>
+        <th>type</th>
+        <th>identifier</th>
+        <th>decision basis</th>
+        <th>auto renewal</th>
+        <th>allocation amount</th>
+        <th>created&nbsp;at</th>
+        <th>updated&nbsp;at</th>
+        <th>require supported</th>
+        <th>allocation lifetime</th>
+        <th>parallel allocations</th>
+        <th>max&nbsp;allocation percentage</th>
+        <th>min&nbsp;average query&nbsp;fees</th>
+        <th>min signal</th>
+        <th>max signal</th>
+        <th>min stake</th>
+        <th>custom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rule of status?.rules">
+        <td>{{ rule.id }}</td>
+        <td class="text-success" [class.text-warning]="rule.identifierType === 'group'">{{ rule.identifierType }}</td>
+        <td class="nowrap monospace">
+            <span title="{{ rule.identifier }}" *ngIf="rule.identifier && rule.identifier !== 'global'">
+                {{ rule.identifier.substr(0, 7) }}&hellip;{{ rule.identifier.substr(-7, 7)}}
+                <i class="fa fa-copy" [cdkCopyToClipboard]="rule.identifier"></i>
+            </span>
+            <span *ngIf="rule.identifier === 'global'">
+                {{ rule.identifier }}
+            </span>
+        </td>
+        <td
+                [class.text-success]="rule.decisionBasis === 'always'"
+                [class.text-warning]="rule.decisionBasis === 'offchain'"
+                [class.text-danger]="rule.decisionBasis === 'never'"
+        >{{ rule.decisionBasis }}</td>
+        <td>{{ rule.autoRenewal }}</td>
+        <td>{{ rule.allocationAmount / 1000000000000000000 | number:'1.0' }}</td>
+        <td class="nowrap">{{ rule.createdAt | date: 'medium' }}</td>
+        <td class="nowrap">{{ rule.updatedAt | date: 'medium' }}</td>
+        <td>{{ rule.requireSupported }}</td>
+        <td>{{ rule.allocationLifetime }}</td>
+        <td>{{ rule.parallelAllocations }}</td>
+        <td>{{ rule.maxAllocationPercentage }}</td>
+        <td>{{ rule.minAverageQueryFees }}</td>
+        <td>{{ rule.minSignal }}</td>
+        <td>{{ rule.maxSignal }}</td>
+        <td>{{ rule.minStake }}</td>
+        <td>{{ rule.custom }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col">
+        <h4 class="mt-5"><i class="fa fa-earth me-2 semi mb-2"></i> Networks</h4>
+        <table class="table table-dark mt-2">
+            <thead>
+            <tr>
+                <th class="ps-4 pe-4">name</th>
+                <th class="ps-4 pe-4">namespace</th>
+                <th class="ps-4 pe-4">head_block_number</th>
+                <th class="ps-4 pe-4">net_version</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let network of status?.networks">
+                <td class="ps-4 pe-4">{{ network.name }}</td>
+                <td class="ps-4 pe-4">{{ network.namespace }}</td>
+                <td class="ps-4 pe-4">{{ network.head_block_number }}</td>
+                <td class="ps-4 pe-4">{{ network.net_version }}</td>
+            </tr>
+            <tr *ngIf="!status?.networks?.length">
+                <td class="ps-4 pe-4 text-center text-warning" colspan="4">No networks</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <h4 class="mt-5"><i class="fa fa-dollar me-2 semi mb-2"></i> Cost models</h4>
+        <table class="table table-dark mt-2">
+            <thead>
+            <tr>
+                <th class="ps-4 pe-4">deployment</th>
+                <th class="ps-4 pe-4">model</th>
+                <th class="ps-4 pe-4">variables</th>
+                <th class="ps-4 pe-4">created&nbsp;at</th>
+                <th class="ps-4 pe-4">updated&nbsp;at</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cost of status?.costModels">
+                <td class="ps-4 pe-4">{{ cost.deployment }}</td>
+                <td class="ps-4 pe-4">{{ cost.model }}</td>
+                <td class="ps-4 pe-4">{{ cost.variables }}</td>
+                <td class="ps-4 pe-4">{{ cost.createdAt }}</td>
+                <td class="ps-4 pe-4">{{ cost.updatedAt }}</td>
+            </tr>
+            <tr *ngIf="!status?.costModels?.length">
+                <td class="ps-4 pe-4 text-center text-warning" colspan="5">No cost models</td>
+            </tbody>
+        </table>
+
+        <h4 class="mt-5"><i class="fa fa-list me-2 semi mb-2"></i> Allocation summaries</h4>
+        <table class="table table-dark mt-2" style="width: auto;">
+            <thead>
+            <tr>
+                <th class="ps-4 pe-4">collected fees</th>
+                <th class="ps-4 pe-4">withdrawn fees</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="ps-4 pe-4 text-success"><b>{{ status?.collectedFees / 1000000000000000000 | number:'1.0' }}</b></td>
+                <td class="ps-4 pe-4">{{ status?.withdrawnFees / 1000000000000000000 | number:'1.0' }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

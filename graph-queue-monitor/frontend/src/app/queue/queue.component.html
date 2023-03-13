@@ -1,0 +1,74 @@
+<div class="clearfix">
+    <div style="float:left">
+        <small *ngIf="loading" >
+            <i class="fas fa-spinner fa-spin ms-1 text-small"></i>
+        </small>
+    </div>
+
+    <div style="float:right">
+        <label class="form-label me-2" for="limit">Limit:</label>
+        <input id="limit" class="form-control" size="4" min="1" max="1000" type="number" [(ngModel)]="limit"/>
+
+        <label class="form-label ms-4 me-2" for="refreshRate">Refresh rate :</label>
+        <input id="refreshRate" class="form-control" size="4" min="1" type="number" [(ngModel)]="refreshTime"
+               (change)="setRefresh()"/>
+        (s)
+    </div>
+</div>
+
+<table class="table table-dark mt-4">
+    <thead>
+    <tr>
+        <th>id <i class="fa fa-arrow-down"></i></th>
+        <th>type</th>
+        <th>status</th>
+        <th>priority</th>
+        <th>deploymentID</th>
+        <th>allocationID</th>
+        <th>reason</th>
+        <th>force</th>
+        <th>amount</th>
+        <th>poi</th>
+        <th>updatedAt</th>
+        <th>source</th>
+        <th>transaction</th>
+        <th>failureReason</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let action of queue">
+        <td>{{ action.id }}</td>
+        <td>{{ action.type }}</td>
+        <td [ngClass]="action.status === 'success' ? 'success' : ( action.status === 'failed' ? 'failed' : '' )">
+            {{ action.status }}
+        </td>
+        <td>{{ action.priority }}</td>
+        <td class="nowrap monospace">
+            <span title="{{ action.deploymentID }}" *ngIf="action.deploymentID">
+                {{ action.deploymentID.substr( 0, 7 ) }}&hellip;{{ action.deploymentID.substr( -7, 7 )}}
+                <i class="fa fa-copy" [cdkCopyToClipboard]="action.deploymentID"></i>
+            </span>
+        </td>
+        <td class="nowrap monospace">
+            <span title="{{ action.allocationID }}" *ngIf="action.allocationID">
+                {{ action.allocationID.substr( 0, 7 ) }}&hellip;{{ action.allocationID.substr( -7, 7 )}}
+                <i class="fa fa-copy" [cdkCopyToClipboard]="action.allocationID"></i>
+            </span>
+        </td>
+        <td>{{ action.reason }}</td>
+        <td>{{ action.force }}</td>
+        <td>{{ action.amount | number:'1.0' }}</td>
+        <td>{{ action.poi }}</td>
+        <td class="nowrap">{{ action.updatedAt | date: 'medium' }}</td>
+        <td>{{ action.source }}</td>
+        <td class="nowrap monospace">
+            <span title="{{ action.transaction }}" *ngIf="action.transaction">
+                {{ action.transaction.substr( 0, 7 ) }}&hellip;{{ action.transaction.substr( -7, 7 )}}
+                <i class="fa fa-copy" [cdkCopyToClipboard]="action.transaction"></i>
+            </span>
+        </td>
+        <td>{{ action.failureReason }}</td>
+    </tr>
+    </tbody>
+
+</table>

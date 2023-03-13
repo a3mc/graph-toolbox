@@ -17,6 +17,9 @@ const loadConfigs = async () => {
         const config = configModule.default;
         configs.push(config)
     }
+    if (!configs.length) {
+        console.warn('No configs found in configs directory. You can copy example from example-configs directory or create your own.');
+    }
     return configs;
 };
 

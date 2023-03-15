@@ -10,6 +10,7 @@ dotenv.config();
 const app = express();
 const port = Number(process.env.PORT || 9090);
 
+// Count any network or other errors
 const errorsCounter = new Prometheus.Counter({
     name: (process.env.PROMETHEUS_PREFIX || '') + 'check_errors',
     help: 'Graph check errors',
@@ -20,6 +21,7 @@ global.state = {};
 
 const requests = await configs.default;
 
+// Process configs and create Prometheus objects.
 for (const [i, request] of requests.entries()) {
     const prometheusObject = {};
 
@@ -38,10 +40,11 @@ for (const [i, request] of requests.entries()) {
     request.prometheus = prometheusObject;
 }
 
-
+// Return cached metrics if we are already fetching them.
 let isFetching = false;
 let cachedMetrics = null;
 
+// This endpoint is called by Prometheus to get the metrics.
 app.get('/metrics', async (req, res) => {
     if (isFetching) {
         res.set('Content-Type', Prometheus.register.contentType);
@@ -63,10 +66,24 @@ app.get('/metrics', async (req, res) => {
     }
 });
 
+// This function is called every time the /metrics endpoint is called.
 export async function fetchRequests() {
     const queue = [];
     for (const request of requests) {
         if (request.checkSSL) {
+            if (Array.isArray(request.url)) {
+                for (const url of request.url) {
+                    queue.push(async () => {
+                        sslChecker( new URL(url).hostname, 'GET', 443 ).then(
+                            response => { request.callback(response, request.prometheus); }
+                        ).catch(err => {
+                            console.error(err)
+                            errorsCounter.inc();
+                        });
+                    } );
+                }
+                continue;
+            }
             queue.push(async () => {
                 sslChecker( new URL(request.url).hostname, 'GET', 443 ).then(
                     response => { request.callback(response, request.prometheus); }

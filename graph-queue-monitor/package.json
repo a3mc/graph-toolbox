@@ -3,13 +3,18 @@
     "version": "0.0.1",
     "description": "Simple tool for displaying the actions queue of the Graph Agent",
     "keywords": [
-        "loopback-application",
-        "loopback"
+        "The Graph",
+        "UI tool",
+        "TheGraph",
+        "tools"
     ],
+    "author": "ART3MIS.CLOUD",
+    "license": "MIT",
+    "website": "https://art3mis.cloud",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "engines": {
-        "node": "14 || 16 || 18 || 19"
+        "node": "16"
     },
     "scripts": {
         "build": "lb-tsc",
@@ -32,8 +37,6 @@
         "type": "git",
         "url": ""
     },
-    "author": "uchu <pavel.burylichev@gmail.com>",
-    "license": "",
     "files": [
         "README.md",
         "dist",

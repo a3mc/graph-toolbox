@@ -42,4 +42,29 @@ describe( 'ActionsQueueController', () => {
         const res = await client.get( '/actions-queue?limit=2' ).expect( 200 );
         expect( res.body.length ).to.equal( 2 );
     } );
+
+    it( 'invokes GET /status', async () => {
+        const res = await client.get( '/status' ).expect( 200 );
+        expect( res.body.rules ).to.containEql(
+            {
+                id: 117,
+                identifier: 'QmeGpvmEKqwf21YauM95vS6jsCDBjcXoa1KeQppde5tWbh',
+                identifierType: 'deployment',
+                allocationAmount: '21000000000000000000000',
+                allocationLifetime: null,
+                autoRenewal: true,
+                parallelAllocations: null,
+                maxAllocationPercentage: null,
+                minSignal: null,
+                minStake: null,
+                maxSignal: null,
+                minAverageQueryFees: null,
+                custom: null,
+                decisionBasis: 'always',
+                requireSupported: true,
+                createdAt: '2023-02-01T15:47:06.791Z',
+                updatedAt: '2023-02-03T06:49:20.596Z'
+            },
+        );
+    } );
 } );

@@ -6,6 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const configsDir = [__dirname, 'configs'].join('/');
 const configs = [];
+
+// Read configs from the files and export them as an array.
 const loadConfigs = async () => {
     const files = await fs.readdir(configsDir);
     for (const file of files) {

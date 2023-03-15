@@ -35,7 +35,7 @@ You may want to add the process to systemd or use some other process manager, li
 
 ### Use cases
 
-Monitor subgraphs and get alerts for any available event. For example number of entities in subgraph and get an alert when it drops below a certain threshold. Monitor the number of entities in subgraph and get an alert when it grows above a certain threshold. Check the network health. Can use data returned by subgraphs, such as price or whatever to display it in your Grafana.
+Monitor subgraphs and get alerts for any available event. For example, number of entities in a subgraph and get an alert when it drops below a certain threshold. Monitor the number of entities in subgraph and get an alert when it grows above a certain threshold. Check the network health. Can use data returned by subgraphs, such as price or whatever to display it in your Grafana.
 
 ### Example configs
 

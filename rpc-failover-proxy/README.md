@@ -1,8 +1,8 @@
 ## HTTP Proxy Server with Failover Capability
 
-This tool developed to achieve a better sustainability of the RPC nodes connections. It is a Node.js HTTP proxy server that is capable of switching between primary and fail-over RPC nodes. It is designed to ensure that requests are still handled even if the primary node goes down, and to automatically switch back to the primary node when it becomes available again.
+This tool is developed to achieve a better sustainability of the RPC nodes connections. It is a Node.js HTTP proxy server that is capable of switching between primary and fail-over RPC nodes. It is designed to ensure that requests are still handled even if the primary node goes down, and to automatically switch back to the primary node when it becomes available again.
 
-Traditional available soulutions have multiple downsides as for example configs varry from chain to chain due to different parameters as such as block time. This lead to high complexity fo the setup where health checks should be adjusted from chain to chain. Another common approach is simple roundrobin balancing which is not effective as it takes extra queries in failover events. There is more available tools for this tasks where we able to switch in to failover instance direction, but unfortunately not back to primary source after incedent are resolved. Our solution should take care of this problems and simplyfy deployments.
+Traditional available solutions have multiple downsides as for example configs vary from chain to chain due to different parameters as such as block time. This leads to a high complexity for the setup where health checks should be adjusted from chain to chain. Another common approach is simple round-robin balancing which is not effective as it takes extra queries in failover events. There are more available tools for these tasks, where we are able to switch in to failover instance direction, but unfortunately not back to primary source after incident is resolved. Our solution should take care of these problems and simply deployments.
 
 #### Installation
 
@@ -26,7 +26,7 @@ The following environment variables are required for the server to function prop
 `FAILOVER_NODE_URL:` The URL for the failover RPC node.
 `DEBUG_LEVEL:` The debug level for the server. Valid values are: 'error', 'warn', 'info', 'debug'.
 `SHUTDOWN_TIMEOUT:` Graceful shutdown timeout (in milliseconds).
-`HEALTHCHECK_INTERVAL:` The interval (in milliseconds) for the healthcheck. Depends on the chain you use. It's recommeded to have it larger than block time, so health check knows that blocks are progressing with each call.
+`HEALTHCHECK_INTERVAL:` The interval (in milliseconds) for the healthcheck. Depends on the chain you use. It's recommended to have it larger than block time, so health check knows that blocks are progressing with each call.
 
 #### Usage
 Once the server is running, you can send requests to it with the RPC call parameters. The server will automatically handle switching between the primary and failover nodes as necessary. Headers will be proxied as is.

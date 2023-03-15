@@ -1,68 +1,61 @@
 ## Introduction
 
-We created this tool to help you monitor your subgraphs and get alerts when something goes wrong.
-During the MIPs program we found that as Indexer, we need more control and monitoring, than existing tools provide.
+Highly customizible prometheus exporter for subgraphs monitoring and alerting which have no particular limitations whatsoever.
+During the MIPs program we found that as Indexer, we need more control over subgraphs we are indexing, oracles subgraphs, epoch endpoint and preferible more.
 
-# Graph Prometheus Exporter
+_Exporter doesn't requare any access to Indexer Stack and can be deployed anywhere, requare as minimum resources as single core VPS instance. However password and key aoutentification can be easily implemented for individual needs if any._
 
-This tool allows to fetch data from subgraphs (or, actually any web sources) and export it to Prometheus.
-You can use it, for example, to monitor your subgraphs and get alerts when something goes wrong.
-Not limited to that though, you can use it to monitor any web source and check things like valitidy of SSL certificates.
+### Graph Prometheus Exporter
 
-## How it works
+Exporter fetch data from subgraphs _(or, actually any web sources)_ and expose in Prometheus format for centalized collectors as such as Grafana.
+Can be used for monitoring of any web source and check things like valitidy of SSL certificates, endpoints availabilities, chains progression and even GitHub new commits and releases.
+
+### How it works
 
 Script goes through all the config files in the `configs` directory and makes a request to the URL specified in the config.
-Then it processes the response using the callback function specified in the config.
-Finally, it sets the Prometheus metrics with the values returned by the callback function.
+Then it processes the response using the callback function specified in the config. Finally, it sets the Prometheus metrics with the values returned by the callback function.
 
 The collected Prometheus metrics can be accessed at the `/metrics` endpoint. By default, it uses 9090 port.
 
-## Installation
+### Installation
 
-Check the example configs in the `example-configs` directory.
-You can use them as a starting point to create your own configuration files.
+Check the example configs in the `example-configs` directory. You can use them as a starting point to create your own configuration files.
 
 To run outside of Docker, you need to have Node.js installed.
-Then, run the following commands:
+
+Then, run the following:
 
 1. `npm install`
 2. `cp .env.example .env`
 3. Edit `.env` file and set the variables
-4. Create a firectory `configs` in the root folder of the project: `mkdir configs`. Copy the config files from `example-configs` to `configs` directory: `cp example-configs/*.js configs/`
+4. Create a directory `configs` in the root folder of the project: `mkdir configs`. Copy the config files from `example-configs` to `configs` directory: `cp example-configs/*.js configs/`
 5. Run the script: `npm start`
 
 You may want to add the process to systemd or use some other process manager, like PM2.
 
-## Docker
+### Use cases
 
+Monitor subgraphs and get alerts for any available event. For example number of entities in subgraph and get an alert when it drops below a certain threshold. Monitor the number of entities in subgraph and get an alert when it grows above a certain threshold. Check the network health. Can use data returned by subgraphs, such as price or whatever to display it in your Grafana.
 
-## Use cases
-
-You can use this tool to monitor your subgraphs and get alerts when something goes wrong.
-For example, you can monitor the number of entities in your subgraph and get an alert when it drops below a certain threshold.
-You can also monitor the number of entities in your subgraph and get an alert when it grows above a certain threshold.
-You can check the network health, and much more.
-You can even use data returned by subgraphs, such as price or whatever to display it in your Grafana.
-
-## Example configs
+### Example configs
 
 This directory contains example configuration files for the various use cases.
 They can be used as a starting point to create your own configuration files.
 Please check the `README.md` file in the `example-configs` directory for more information.
 
-## Tests
+### Tests
 
 To run the tests, run the following command: `npm test`.
 
-## Contributing
+### Contributing
 
 Contributions are welcome! If you have any ideas or suggestions, please open an issue or a pull request.
 
-## License
+### License
 
 MIT
 
-## How it may look in Grafana
+### How it may look in Grafana
 #### (based on the example configs)
 
 ![Grafana](grafana.png)

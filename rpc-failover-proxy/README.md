@@ -1,7 +1,10 @@
-# RPC Proxy Server with Failover Capability
-We've developed this tool to help the Graph Protocol community achieve a better sustainability of the RPC nodes connections. It is a Node.js proxy server that is capable of switching between primary and fail-over RPC nodes. It is designed to ensure that requests are still handled even if the primary node goes down, and to automatically switch back to the primary node when it becomes available again.
+## HTTP Proxy Server with Failover Capability
 
-### Installation
+This tool developed to achieve a better sustainability of the RPC nodes connections. It is a Node.js HTTP proxy server that is capable of switching between primary and fail-over RPC nodes. It is designed to ensure that requests are still handled even if the primary node goes down, and to automatically switch back to the primary node when it becomes available again.
+
+Traditional available soulutions have multiple downsides as for example configs varry from chain to chain due to different parameters as such as block time. This lead to high complexity fo the setup where health checks should be adjusted from chain to chain. Another common approach is simple roundrobin balancing which is not effective as it takes extra queries in failover events. There is more available tools for this tasks where we able to switch in to failover instance direction, but unfortunately not back to primary source after incedent are resolved. Our solution should take care of this problems and simplyfy deployments.
+
+#### Installation
 
 1. Install the required packages: `npm install`
 
@@ -9,34 +12,32 @@ We've developed this tool to help the Graph Protocol community achieve a better 
 
 3. Start the server: `node .`
 
-### Tests
+#### Tests
 
 To run the tests, run `npm test`.
 
-### Configuration
+#### Configuration
 The following environment variables are required for the server to function properly:
-```
-PORT: The port number for the server to listen on.
-METRICS_PORT: The port number for the Prometheus metrics server to listen on.
-TIMEOUT: The timeout value (in milliseconds) for RPC requests.
-PRIMARY_NODE_URL: The URL for the primary RPC node.
-FAILOVER_NODE_URL: The URL for the failover RPC node.
-DEBUG_LEVEL: The debug level for the server. Valid values are: 'error', 'warn', 'info', 'debug'.
-SHUTDOWN_TIMEOUT: Graceful shutdown timeout (in milliseconds).
-HEALTHCHECK_INTERVAL: The interval (in milliseconds) for the healthcheck. Depends on the chain you use. It's recommeded to have it larger than block time, so the script knows that blocks are progressing with each call.
-```
 
-### Usage
-Once the server is running, you can send requests to it with the RPC call parameters. The server will automatically handle switching between the primary and failover nodes as necessary.
-Headers will be proxied as is.
+`PORT:` The port number for the server to listen on.
+`METRICS_PORT:` The port number for the Prometheus metrics server to listen on.
+`TIMEOUT:` The timeout value (in milliseconds) for RPC requests.
+`PRIMARY_NODE_URL:` The URL for the primary RPC node.
+`FAILOVER_NODE_URL:` The URL for the failover RPC node.
+`DEBUG_LEVEL:` The debug level for the server. Valid values are: 'error', 'warn', 'info', 'debug'.
+`SHUTDOWN_TIMEOUT:` Graceful shutdown timeout (in milliseconds).
+`HEALTHCHECK_INTERVAL:` The interval (in milliseconds) for the healthcheck. Depends on the chain you use. It's recommeded to have it larger than block time, so health check knows that blocks are progressing with each call.
 
-The server also exposes a `/metrics` endpoint that returns Prometheus metrics for monitoring and analysis.
+#### Usage
+Once the server is running, you can send requests to it with the RPC call parameters. The server will automatically handle switching between the primary and failover nodes as necessary. Headers will be proxied as is.
 
-### Grafana Dashboard example
+The server also exposes a `/metrics` endpoint that returns advanced Prometheus metrics for monitoring, analysis and alerting.
+
+#### Grafana Dashboard example
 ![Grafana Dashboard](grafana.png)
 
-### Contributing
+#### Contributing
 Contributions are welcome! If you find a bug or have an idea for an improvement, please open an issue or submit a pull request.
 
-### License
+#### License
 This project is licensed under the MIT License.

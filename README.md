@@ -1,33 +1,33 @@
-# Toolbox Suite for TheGraph Indexers and Subgraph Developers
+## Toolbox Suite for Indexers, Developers and Data Consumers
 
-We found that as Indexers, we need more control and monitoring, than existing tools provide. So we created a set of tools to help you monitor your subgraphs and get alerts when something goes wrong. 
+Set of tools to monitor various components and get alerts when something goes wrong or overwise right.
 
-### This a Monorepo consisting of the following tools:
+#### This is a Monorepo consisting of the following:
 
-### [Graph Queue and Indexer Status Monitor](graph-queue-monitor)
+#### [Graph Queue and Indexer Status Monitor](graph-queue-monitor)
 
-This tool allows you to monitor the Status of your Indexer and the Actions queue. It will be useful for Indexers to keep an eye on how their allocations work. It has an interface available in browser.
+This tool provide expanded indexer status including multiple fields which are not available in console and detailed actions queue table. This is useful in allocations debugging which we found hard to do with already available toolset. Interface easily available in browser, application can be run on remote server or on laptop trough ssh tunnel. Setup is flexible and vary depends on individual the stack architecture.
 
-### [Graph Prometheus Exporter](graph-prom-exporter)
+#### [Graph Prometheus Exporter](graph-prom-exporter)
 
-This tool allows to fetch data from subgraphs (or, actually any web sources) and export it to Prometheus. You can use it, for example, to monitor your subgraphs and get alerts when something goes wrong. Not limited to that though, you can use it to monitor any web source.
+This exporter build specifically to fetch data from subgraphs, however, exporter able to fetch any data from any source with additional configuration and can be used to build any sorts of exportes in no time. We are tired to constantly build new scrappers for new revolutional softwares daily and so here this tool come to reduce time consumption. Currently is in testing and we plan to continue development in this direction. End metrics provided in Prometheus format and ready to be consumed by Grafana for continious alerts and visual representation.
 
-It comes with an example suite that would be a good starting point for your own monitoring.
+Tool comes with an example suite that would be a good for getting started check example-configs folder for more details.
 
 Not limited to **Indexers**, it might be a good tool for **Subgraph developers** to monitor their subgraphs, and even for **Subgraph data consumers** to monitor the data they consume. As it is easy to extend by adding your own configs.
 
-### [RPC Failover Proxy](rpc-failover-proxy)
+#### [HTTP Failover Proxy](rpc-failover-proxy)
 
-This tool allows you to create a failover proxy for your RPC nodes. It will be useful for **Indexers** to have a backup proxy for their RPC nodes. Its Healthcheck algorithm ensures that blocks are progressing correctly. 
+In current stage of multichain integration we dealing with tons of unstable software feeding our indexers. RPC failover proxy build for critical situations when main archive fail and we need to swap fast on backup instance. We found setting up traditional proxy solutions as very much time consuming process, specifically when chains have different parameters as such as block time for example. This requare custom control scripts to be set in place depends on which chain we are about to serve. Our solution make this process easy and limited to one simple configuration file which contain essential variables. Docker can be integrated in to swarm and well controled externaly. Rich metrics provided in Prometheus format give precise expanded overview of proxy processes and consequentualy provide general RPC nodes performance.
 
-# Contributing
+#### Contributing
 
 We welcome contributions from everyone. If you have any ideas or suggestions, please open an issue or a pull request.
 
-# License
+#### License
 
 All tools are licensed under the MIT license.
 
-*Developed with love and care by [ART3MIS.CLOUD](https://art3mis.cloud) for TheGraph Indexers, Subgraph Developers and data consumers.*
+*Developed with love and care by [ART3MIS.CLOUD](https://art3mis.cloud) for The Graph Indexers, Subgraph Developers and data consumers.*
 
 ![image](toolbox.png)

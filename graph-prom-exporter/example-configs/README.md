@@ -21,4 +21,6 @@ The file should contain a JS script, used as a config with the following parts:
 
 `method: 'post'` - This is the method that will be used to make a request to the URL. It's optional and defaults to `post`.
 
+`checkSSL` - That will retrieve a certificate details for the given URL. For example for an indexer endpoint. It's optional and defaults to `false`.
+
 `callback: (response, prometheus) => {...}` - This is the callback function that will be used to process the data. You can filter it as you like and set the prometheus metrics like follows: `prometheus['metrics_name'].set(value)`. You can also use `prometheus['metrics_name'].inc()` to increment the value for the Counters.

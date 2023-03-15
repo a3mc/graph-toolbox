@@ -8,7 +8,6 @@ export default {
     method: 'get',
     callback: (response, prometheus) => {
         if ( response.status !== 200 ) {
-            prometheus['downtime_counter'].reset();
             prometheus['downtime_counter'].inc();
         }
     }

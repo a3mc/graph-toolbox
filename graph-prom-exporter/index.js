@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as dotenv from 'dotenv';
 import * as configs from './config-index.js';
 import async from 'async';
+import sslChecker from "ssl-checker";
 
 dotenv.config();
 const app = express();
@@ -65,22 +66,33 @@ app.get('/metrics', async (req, res) => {
 export async function fetchRequests() {
     const queue = [];
     for (const request of requests) {
-        queue.push(async () => {
-            try {
-                const response = await axios[request.method || 'post'](
-                    request.url,
-                    request.query ? {query: request.query} : null,
-                    {
-                        timeout: Number(process.env.TIMEOUT || 10000),
-                        keepAlive: true,
-                    }
-                );
-                request.callback(response, request.prometheus);
-            } catch (err) {
-                console.error(err);
-                errorsCounter.inc();
-            }
-        })
+        if (request.checkSSL) {
+            queue.push(async () => {
+                sslChecker( new URL(request.url).hostname, 'GET', 443 ).then(
+                    response => { request.callback(response, request.prometheus); }
+                ).catch(err => {
+                    console.error(err)
+                    errorsCounter.inc();
+                });
+            } );
+        } else {
+            queue.push(async () => {
+                try {
+                    const response = await axios[request.method || 'post'](
+                        request.url,
+                        request.query ? {query: request.query} : null,
+                        {
+                            timeout: Number(process.env.TIMEOUT || 10000),
+                            keepAlive: true,
+                        }
+                    );
+                    request.callback(response, request.prometheus);
+                } catch (err) {
+                    console.error(err);
+                    errorsCounter.inc();
+                }
+            })
+        }
     }
     await async.parallelLimit(queue, Number(process.env.PARALLEL_LIMIT || 10));
 }

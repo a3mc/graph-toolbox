@@ -7,7 +7,7 @@ During the MIPs program we found that as Indexer, we need more control and monit
 
 This tool allows to fetch data from subgraphs (or, actually any web sources) and export it to Prometheus.
 You can use it, for example, to monitor your subgraphs and get alerts when something goes wrong.
-Not limited to that though, you can use it to monitor any web source.
+Not limited to that though, you can use it to monitor any web source and check things like valitidy of SSL certificates.
 
 ## How it works
 
@@ -35,9 +35,6 @@ You may want to add the process to systemd or use some other process manager, li
 
 ## Docker
 
-You can also run the script in Docker.
-To do that, you need to have Docker installed.
-Then, run the following commands:
 
 ## Use cases
 

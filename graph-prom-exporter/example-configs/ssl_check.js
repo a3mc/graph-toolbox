@@ -19,6 +19,8 @@ export default {
         prometheus['indexer_site_ssl_days_left'].set(response.daysRemaining);
         prometheus['indexer_site_ssl_valid'].set(response.valid ? 1: 0);
         prometheus['indexer_site_ssl_valid_till'].set(Date.parse(response.validTo));
-        prometheus['indexer_sites_ssl'].labels('sites', response.validFor.join(', ')).set(1);
+        for ( const site of response.validFor ) {
+            prometheus['indexer_sites_ssl'].labels('sites', site).set(1);
+        }
     }
 }

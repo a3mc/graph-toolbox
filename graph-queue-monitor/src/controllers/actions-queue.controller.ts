@@ -21,7 +21,7 @@ export class ActionsQueueController {
         @param.query.number( 'limit' ) limit: number = 50,
     ): Promise<any> {
         if ( process.env.USE_MOCKS ) {
-            return queueMock;
+            return queueMock.slice(0, limit);
         }
 
         const client = await this.agentPool.connect();

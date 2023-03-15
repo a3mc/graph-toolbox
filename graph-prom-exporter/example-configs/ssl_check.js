@@ -20,7 +20,7 @@ export default {
         prometheus['indexer_site_ssl_valid'].set(response.valid ? 1: 0);
         prometheus['indexer_site_ssl_valid_till'].set(Date.parse(response.validTo));
         for ( const site of response.validFor ) {
-            prometheus['indexer_sites_ssl'].labels('sites', site).set(1);
+            prometheus['indexer_sites_ssl'].labels('sites', site).set(response.valid ? 1: 0);
         }
     }
 }

@@ -35,11 +35,11 @@ export default {
         prometheus['active_subs'].set(Number(response.data.data.allocations.length));
 
         // Filter out allocations that are not the current version of the subgraph.
-        prometheus['deprecated_subs'].set(response.data.data.allocations.filter(
+        prometheus['deprecated_subs'].set( response.data.data.allocations.filter(
             allocation => {
                 return allocation.subgraphDeployment.versions[allocation.subgraphDeployment.versions.length-1].id !==
                     allocation.subgraphDeployment.versions[allocation.subgraphDeployment.versions.length-1].subgraph.currentVersion.id;
-            }).length);
+            }).length );
 
         // This may not trigger for the first call, but it will trigger for all subsequent calls,
         // when the global state is updated.

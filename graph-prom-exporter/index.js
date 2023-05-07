@@ -44,6 +44,7 @@ for (const [i, request] of requests.entries()) {
 // Return cached metrics if we are already fetching them.
 let isFetching = false;
 let cachedMetrics = null;
+const cache = {};
 
 // This endpoint is called by Prometheus to get the metrics.
 app.get('/metrics', async (req, res) => {
@@ -102,6 +103,16 @@ export async function fetchRequests() {
                 queue.push(async () => {
                     const source = CancelToken.source();
 
+                    if (request.cache) {
+                        if ( cache[url] ) {
+                            return request.callback(cache[url], request.prometheus);
+                        } else {
+                            setTimeout( () => {
+                                delete cache[url];
+                            }, request.cache)
+                        }
+                    }
+
                     const axiosPromise = axios[request.method || 'post'](
                         url,
                         request.query ? {query: request.query} : null,
@@ -109,6 +120,7 @@ export async function fetchRequests() {
                             timeout: timeout,
                             keepAlive: true,
                             cancelToken: source.token,
+                            headers: request.headers || {}
                         }
                     );
 
@@ -124,6 +136,9 @@ export async function fetchRequests() {
                             axiosPromise,
                             timeoutPromise
                         ]);
+                        if (request.cache) {
+                            cache[url] = response;
+                        }
                         request.callback(response, request.prometheus);
                     } catch (error) {
                         console.error('Error fetching ' + url + ':', error.message);

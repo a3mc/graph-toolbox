@@ -98,16 +98,26 @@ export async function fetchRequests() {
                 });
             }
         } else {
-            for (const url of request.url) {
+            let allUrls = request.url;
+            if (request.paramsSet) {
+                if (!request.paramsSet().length) continue;
+                allUrls = [];
+                const urls = request.url;
+                for (const url of urls) {
+                    for (const params of request.paramsSet()) {
+                        allUrls.push(url + params);
+                    }
+                }
+            }
 
+            for (const url of allUrls) {
                 queue.push(async () => {
                     const source = CancelToken.source();
-
                     if (request.cache) {
-                        if ( cache[url] ) {
+                        if (cache[url]) {
                             return request.callback(cache[url], request.prometheus);
                         } else {
-                            setTimeout( () => {
+                            setTimeout(() => {
                                 delete cache[url];
                             }, request.cache)
                         }
@@ -115,7 +125,7 @@ export async function fetchRequests() {
 
                     const axiosPromise = axios[request.method || 'post'](
                         url,
-                        request.query ? {query: request.query} : null,
+                        request.data ? request.data : (request.query ? {query: request.query} : null),
                         {
                             timeout: timeout,
                             keepAlive: true,

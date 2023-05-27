@@ -90,6 +90,8 @@ export class Proxy {
     proxyRes(proxyRes, req, res) {
         if (proxyRes.statusCode === 200) {
             this._metrics.metrics.successfulRpcRequests.inc();
+        } else {
+            this._metrics.metrics.failedRpcRequests.inc();
         }
         logger.debug(proxyRes.statusCode);
     }

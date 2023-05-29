@@ -2,7 +2,7 @@
 export default {
     type: ['Gauge', 'Gauge', 'Gauge'],
     name: ['active_subs', 'deprecated_subs', 'alloc_ages'],
-    help: ['Active subgraphs count', 'Deprecated subgraphs count', 'Allocations block age'],
+    help: ['Active subgraphs count', 'Deprecated subgraphs', 'Allocations block age'],
     url: process.env.NETWORK_SUBGRAPH,
     query: `fragment IndexerAllocationFragment on Allocation {
                   id
@@ -34,12 +34,18 @@ export default {
         // Active subgraphs count
         prometheus['active_subs'].set(Number(response.data.data.allocations.length));
 
-        // Filter out allocations that are not the current version of the subgraph.
-        prometheus['deprecated_subs'].set( response.data.data.allocations.filter(
+
+        const deprecatedSubgraphs = response.data.data.allocations.filter(
             allocation => {
                 return allocation.subgraphDeployment.versions[allocation.subgraphDeployment.versions.length-1].id !==
                     allocation.subgraphDeployment.versions[allocation.subgraphDeployment.versions.length-1].subgraph.currentVersion.id;
-            }).length );
+            } );
+
+        for ( const subgraph of deprecatedSubgraphs ) {
+            const subgraphName = subgraph.subgraphDeployment.versions[0].subgraph.displayName;
+            const allocationId = subgraph.subgraphDeployment.ipfsHash;
+            prometheus['deprecated_subs'].labels(allocationId, subgraphName).set(1);
+        }
 
         // This may not trigger for the first call, but it will trigger for all subsequent calls,
         // when the global state is updated.

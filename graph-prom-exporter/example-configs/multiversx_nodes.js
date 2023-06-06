@@ -2,27 +2,27 @@ export default {
     type: ['Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge',
         'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge' ],
     name: [
-        'mxN_node_count',
-        'mxN_bls',
-        'mxN_version',
-        'mxN_rating',
-        'mxN_temp_rating',
-        'mxN_rating_modifier',
-        'mxN_shard',
-        'mxN_type',
-        'mxN_status',
-        'mxN_online',
-        'mxN_nonce',
-        'mxN_instances',
-        'mxN_provider',
-        'mxN_stake',
-        'mxN_topUp',
-        'mxN_locked',
-        'mxN_leaderFailure',
-        'mxN_validatorFailure',
-        'mxN_validatorIgnoredSignatures',
-        'mxN_validatorSuccess',
-        'mxN_position'
+        'mxn_node_count',
+        'mxn_bls',
+        'mxn_version',
+        'mxn_rating',
+        'mxn_temp_rating',
+        'mxn_rating_modifier',
+        'mxn_shard',
+        'mxn_type',
+        'mxn_status',
+        'mxn_online',
+        'mxn_nonce',
+        'mxn_instances',
+        'mxn_provider',
+        'mxn_stake',
+        'mxn_top_up',
+        'mxn_locked',
+        'mxn_leader_failure',
+        'mxn_validator_failure',
+        'mxn_validator_ignored_signatures',
+        'mxn_validator_success',
+        'mxn_position'
     ],
     help: [
         'MX node count',
@@ -51,28 +51,28 @@ export default {
     method: 'get',
     callback: (response, prometheus) => {
         const denom = 1000000000000000000;
-        prometheus['mxN_node_count'].set(response.data.length);
+        prometheus['mxn_node_count'].set(response.data.length);
         for (const node of response.data) {
-            prometheus['mxN_bls'].labels(node.name, shortBls(node.bls)).set(1);
-            prometheus['mxN_version'].labels(node.name, node.version).set(1);
-            prometheus['mxN_rating'].labels(node.name, shortBls(node.bls)).set(node.rating ?? -1);
-            prometheus['mxN_temp_rating'].labels(node.name, shortBls(node.bls)).set(node.tempRating ?? -1);
-            prometheus['mxN_rating_modifier'].labels(node.name, shortBls(node.bls)).set(node.ratingModifier);
-            prometheus['mxN_shard'].labels(node.name, shortBls(node.bls)).set(node.shard ?? -1);
-            prometheus['mxN_type'].labels(node.name, node.type).set(1);
-            prometheus['mxN_status'].labels(node.name, node.status).set(1);
-            prometheus['mxN_online'].labels(node.name, node.bls).set(node.online ? 1 : 0);
-            prometheus['mxN_nonce'].labels(node.name, shortBls(node.bls)).set(node.nonce ?? -1);
-            prometheus['mxN_instances'].labels(node.name, shortBls(node.bls)).set(node.instances ?? -1);
-            prometheus['mxN_provider'].labels(shortBls(node.bls), node.provider).set(1);
-            prometheus['mxN_stake'].labels(node.name, shortBls(node.bls)).set(Number(node.stake ?? -1) / denom);
-            prometheus['mxN_topUp'].labels(node.name, shortBls(node.bls)).set(Number(node.topUp ?? -1) / denom);
-            prometheus['mxN_locked'].labels(node.name, shortBls(node.bls)).set(Number(node.locked ?? -1) / denom);
-            prometheus['mxN_leaderFailure'].labels(node.name, shortBls(node.bls)).set(node.leaderFailure ?? -1);
-            prometheus['mxN_validatorFailure'].labels(node.name, shortBls(node.bls)).set(node.validatorFailure ?? -1);
-            prometheus['mxN_validatorIgnoredSignatures'].labels(node.name, shortBls(node.bls)).set(node.validatorIgnoredSignatures ?? -1);
-            prometheus['mxN_validatorSuccess'].labels(node.name, shortBls(node.bls)).set(node.validatorSuccess ?? -1);
-            prometheus['mxN_position'].labels(node.name, shortBls(node.bls)).set(node.position ?? -1);
+            prometheus['mxn_bls'].labels(node.name, shortBls(node.bls)).set(1);
+            prometheus['mxn_version'].labels(node.name, node.version).set(1);
+            prometheus['mxn_rating'].labels(node.name, shortBls(node.bls)).set(node.rating ?? -1);
+            prometheus['mxn_temp_rating'].labels(node.name, shortBls(node.bls)).set(node.tempRating ?? -1);
+            prometheus['mxn_rating_modifier'].labels(node.name, shortBls(node.bls)).set(node.ratingModifier);
+            prometheus['mxn_shard'].labels(node.name, shortBls(node.bls)).set(node.shard ?? -1);
+            prometheus['mxn_type'].labels(node.name, node.type).set(1);
+            prometheus['mxn_status'].labels(node.name, node.status).set(1);
+            prometheus['mxn_online'].labels(node.name, node.bls).set(node.online ? 1 : 0);
+            prometheus['mxn_nonce'].labels(node.name, shortBls(node.bls)).set(node.nonce ?? -1);
+            prometheus['mxn_instances'].labels(node.name, shortBls(node.bls)).set(node.instances ?? -1);
+            prometheus['mxn_provider'].labels(shortBls(node.bls), node.provider).set(1);
+            prometheus['mxn_stake'].labels(node.name, shortBls(node.bls)).set(Number(node.stake ?? -1) / denom);
+            prometheus['mxn_top_up'].labels(node.name, shortBls(node.bls)).set(Number(node.topUp ?? -1) / denom);
+            prometheus['mxn_locked'].labels(node.name, shortBls(node.bls)).set(Number(node.locked ?? -1) / denom);
+            prometheus['mxn_leader_failure'].labels(node.name, shortBls(node.bls)).set(node.leaderFailure ?? -1);
+            prometheus['mxn_validator_failure'].labels(node.name, shortBls(node.bls)).set(node.validatorFailure ?? -1);
+            prometheus['mxn_validator_ignored_signatures'].labels(node.name, shortBls(node.bls)).set(node.validatorIgnoredSignatures ?? -1);
+            prometheus['mxn_validator_success'].labels(node.name, shortBls(node.bls)).set(node.validatorSuccess ?? -1);
+            prometheus['mxn_position'].labels(node.name, shortBls(node.bls)).set(node.position ?? -1);
         }
 
         function shortBls( bls ) {

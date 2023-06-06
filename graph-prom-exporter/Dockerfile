@@ -5,7 +5,7 @@ USER node
 RUN mkdir -p /home/node/app
 RUN mkdir -p /home/node/app/configs
 COPY .env /home/node/app/
-COPY ./configs /home/node/app/configs/
+COPY _configs /home/node/app/configs/
 
 WORKDIR /home/node/app
 

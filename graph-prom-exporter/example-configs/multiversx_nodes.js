@@ -45,7 +45,7 @@ export default {
         'MX node validatorFailure',
         'MX node validatorIgnoredSignatures',
         'MX node validatorSuccess',
-        'MX node position'
+        'MX node position',
     ],
     url: 'https://api.multiversx.com/nodes?provider=' + process.env.MX_PROVIDER,
     method: 'get',

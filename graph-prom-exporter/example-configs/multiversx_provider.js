@@ -3,7 +3,7 @@ export default {
     name: [
         'mx_service_fee', 'mx_delegation_cap', 'mx_apr', 'mx_num_users', 'mx_cumulated_rewards',
         'mx_num_nodes', 'mx_stake', 'mx_top_up', 'mx_locked', 'mx_featured', 'mx_automatic_activation',
-        'mx_initial_owner_funds', 'mx_check_cap_on_redelegate', 'mx_total_un_staked', 'mx_created_nonce'
+        'mx_initial_owner_funds', 'mx_check_cap_on_redelegate', 'mx_tot_un_staked', 'mx_created_nonce'
     ],
     help: [
         'MX serviceFee', 'MX delegationCap', 'MX apr', 'MX numUsers', 'MX cumulatedRewards',
@@ -29,7 +29,7 @@ export default {
         prometheus['mx_automatic_activation'].set(response.data.automaticActivation ? 1 : 0);
         prometheus['mx_initial_owner_funds'].set(Number(response.data.initialOwnerFunds) / denom);
         prometheus['mx_check_cap_on_redelegate'].set(response.data.checkCapOnRedelegate ? 1 : 0);
-        prometheus['mx_total_un_staked'].set(Number(response.data.totalUnStaked) / denom);
+        prometheus['mx_tot_un_staked'].set(Number(response.data.totalUnStaked) / denom);
         prometheus['mx_created_nonce'].set(response.data.createdNonce);
     }
 }

@@ -2,7 +2,7 @@ export default {
     type: ['Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge',
         'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge', 'Gauge' ],
     name: [
-        'mxn_node_count',
+        'mxn_node_cnt',
         'mxn_bls',
         'mxn_version',
         'mxn_rating',
@@ -25,7 +25,7 @@ export default {
         'mxn_position'
     ],
     help: [
-        'MX node count',
+        'MX node cnt',
         'MX node bls',
         'MX node version',
         'MX node rating',
@@ -51,7 +51,7 @@ export default {
     method: 'get',
     callback: (response, prometheus) => {
         const denom = 1000000000000000000;
-        prometheus['mxn_node_count'].set(response.data.length);
+        prometheus['mxn_node_cnt'].set(response.data.length);
         for (const node of response.data) {
             prometheus['mxn_bls'].labels(node.name, shortBls(node.bls)).set(1);
             prometheus['mxn_version'].labels(node.name, node.version).set(1);

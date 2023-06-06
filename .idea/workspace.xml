@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0256d982-4fb1-4fa2-aac0-1171229bf641" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_economics.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/configs/multiversx_economics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_network.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/configs/multiversx_network.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/configs/multiversx_nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/configs/multiversx_provider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_nodes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +63,8 @@
       <recent name="$PROJECT_DIR$/graph-prom-exporter/example-configs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/graph-prom-exporter/configs" />
       <recent name="$PROJECT_DIR$/graph-prom-exporter/example-configs" />
+      <recent name="$PROJECT_DIR$/graph-prom-exporter/configs" />
       <recent name="$PROJECT_DIR$/graph-prom-exporter" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/example-configs" />
@@ -96,7 +94,7 @@
       <workItem from="1685211864143" duration="3909000" />
       <workItem from="1685479202671" duration="424000" />
       <workItem from="1686057548667" duration="6000" />
-      <workItem from="1686058341836" duration="10344000" />
+      <workItem from="1686058341836" duration="10817000" />
     </task>
     <servers />
   </component>

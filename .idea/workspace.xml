@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0256d982-4fb1-4fa2-aac0-1171229bf641" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_nodes.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_nodes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/example-configs/multiversx_provider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-prom-exporter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph-prom-exporter/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
       <workItem from="1685211864143" duration="3909000" />
       <workItem from="1685479202671" duration="424000" />
       <workItem from="1686057548667" duration="6000" />
-      <workItem from="1686058341836" duration="10817000" />
+      <workItem from="1686058341836" duration="11173000" />
     </task>
     <servers />
   </component>

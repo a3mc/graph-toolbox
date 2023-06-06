@@ -13,7 +13,7 @@ const timeout = Number(process.env.TIMEOUT || 5000)
 
 // Count any network or other errors
 const errorsCounter = new Prometheus.Counter({
-    name: (process.env.PROMETHEUS_PREFIX || '') + 'check_errors',
+    name: (process.env.PROMETHEUS_PREFIX || '') + 'check_errors_total',
     help: 'Graph check errors',
 });
 
